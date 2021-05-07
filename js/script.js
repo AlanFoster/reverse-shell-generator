@@ -119,7 +119,7 @@
                 }
             },
 
-            escapeHTML: (text) => String(text).replace(/</, '&lt;').replace(/>/, '&gt;'),
+            escapeHTML: (text) => String(text).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
 
             getIP: () => rsg.ip,
 
@@ -174,6 +174,7 @@
                             encoding](string) : string
                     }
 
+                    command = rsg.escapeHTML(command);
                     command = rsg.insertParameters(
                         rsg.highlightParameters(
                             encoder(command), encoder),
